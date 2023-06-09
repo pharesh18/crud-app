@@ -9,6 +9,7 @@ const { validateUser, checkAccess } = require('./src/library/userAuthorization.j
 app.use(express.json({ urlEncoded: false }));
 app.use(cors());
 
+// .env file configuration
 const result = dotenv.config();
 if (result.error) {
     throw result.error;
@@ -19,7 +20,7 @@ app.listen(PORT, () => {
     console.log(`Server listening at PORT : ${PORT}`);
 });
 
-app.use(validateUser);
-app.use(checkAccess);
+app.use(validateUser);     // validate request
+app.use(checkAccess);      // verify user
 app.use('/api/user', userRoute);
 app.use('/api/product', productRoute);
