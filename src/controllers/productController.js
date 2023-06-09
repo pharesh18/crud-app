@@ -67,7 +67,7 @@ const validateCheckout = (req, res, next) => {
         city: joi.string().required(),
         state: joi.string().required(),
         postal_code: joi.string().required(),
-        contact: joi.string().min(10).max(10).required()
+        contact: joi.string().min(10).max(10).pattern(/^[0-9]+$/).required()
     });
 
     if (!validateRequest(req.body, res, next, checkoutSchema)) {
